@@ -1,7 +1,7 @@
 # Gauge Progress
 gauge progress vanilla JS version 
 
-## markup
+### markup
 
 ```
 <div id="progress">
