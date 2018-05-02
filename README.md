@@ -1,2 +1,10 @@
 # Gauge Progress
-게이지 프로그레스바 
+gauge progress vanilla JS version 
+
+## markup
+
+```
+<div id="progress">
+  <div class="bar"></div>
+</div>
+```
