@@ -25,3 +25,9 @@ var gProgress = new gaugeProgress({
 	}
 });
 ```
+
+#### changeCurrent method
+```
+var current = document.getElementById("price").value;
+gProgress2.changeCurrent(current);
+```
