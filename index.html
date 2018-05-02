@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{box-sizing: border-box;}
+		.gauge{
+			min-height:34px;
+			overflow:hidden;
+			border:1px solid #ddd;
+			background:#efefef;
+			border-radius:25px;
+		}
+		.gauge .bar{
+			width:0%;
+			min-height:34px;
+			background:#ffd6d4;
+			border-radius:25px;
+		}
+		
+		*{box-sizing: border-box;}
+		#progress, #progress2{
+			position: relative;
+			width:608px;
+			min-height:34px;
+			overflow:hidden;
+			padding:5px;
+			border:1px solid #ddd;
+			background:#efefef;
+			border-radius:25px;
+		}
+		#progress .bar, #progress2 .bar{
+			width:0%;
+			min-height:34px;
+			color:#fff;
+			background:#3a7ba2;
+			border-radius:25px;
+		}
+		#progress .count, #progress2 .count{
+			position: absolute;
+			left:20px;
+			top:13px;
+			color:#080808;
+		}
+		#progress .maximum, #progress2 .maximum{
+			position: absolute;
+			right:20px;
+			top:13px;
+			color:#080808;
+		}
+		#progress .percentage, #progress2 .percentage{
+			position: absolute;
+			top:13px;
+			width:100%;
+			text-align:center;
+			color:#080808;
+		}
+	</style>
+	<script src="./gaugeAchieve.js"></script>
+</head>
+<body>
+
+<section>
+<br>
+	<div id="progress">
+		<div class="bar"></div>
+	</div>
+<br>
+	<div id="progress2">
+		<div class="bar"></div>
+	</div>
+	<div>
+	  숫자 : <input type="number" id="price"  />
+	  <button type="button" id="apply">적용</button>
+	</div>
+<br>
+
+<script>
+
+var gProgress = new gaugeProgress({
+	id : 'progress',
+	maximum : '500000',
+	current : '200000',
+	percentage : true,
+	currentNode : 'count',
+	maximumNode : 'maximum',
+	fps : '1s',
+	callback : null
+});
+
+var gProgress2 = new gaugeProgress({
+	id : 'progress2',
+	maximum : '200000',
+	current : '50000',
+	percentage : true,
+	currentNode : 'count',
+	maximumNode : 'maximum',
+	fps : '1s',
+	callback : function(){
+
+	}
+});
+
+document.getElementById("apply").addEventListener('click', function(){
+	var current = document.getElementById("price").value;
+	gProgress2.changeCurrent(current);
+});
+
+</script>
+
+</body>
+</html>
