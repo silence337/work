@@ -1,5 +1,5 @@
 # Gauge Progress
-gauge progress vanilla JS version 
+gauge progress vanilla JS 
 
 ### markup
 
