@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; 
 
 var gaugeProgress = function(options){
 	var me = this;
