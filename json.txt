@@ -1,0 +1,76 @@
+[{
+    "image":"https://is5-ssl.mzstatic.com/image/thumb/Features/v4/57/9a/d2/579ad2e5-e9eb-630a-dafd-1704e0fbe9cc/mza_1011095246346662165.jpg/1200x630bb.jpg",
+    "name":"Michael Jackson",
+    "song":"Thriller"
+},
+{
+    "image":"https://images-na.ssl-images-amazon.com/images/I/51yk-y2-f9L.jpg",
+    "name": "Maroon 5",
+    "song":"She will be loved"
+},
+{
+    "image":"http://www.billboard.com/files/media/05-taylor-swift-look-what-you-made-me-do-screenshot-2017-billboard-1548.jpg",
+    "name": "Taylor Swift",
+    "song": "Look what you made me do"
+},{
+    "image": "http://www.labellemel.com/wp-content/uploads/2012/07/taylor-swift-love-story-hairstyles.jpg",
+    "name": "Taylor Swift",
+    "song": "Love story"
+},{
+    "image": "http://www.billboard.com/files/styles/article_main_image/public/media/Sam-Smith-press-photo-by-Ruven-Afanador-Sept-2017-NEW-billboard-1548.jpg",
+    "name": "Sam Smith",
+    "song": "Too good as goodbyes"
+},{
+    "image":"https://images.genius.com/7a6c7f763eac057877030bcf7d67b7fd.1000x1000x1.jpg",
+    "name": "David Guetta",
+    "song": "Sexy chick"
+}
+]
+
+
+$(function($){
+//SOME CODE
+    windowResize();
+    readTableJson();
+    
+    $('span.refreshTable').on('click',function(e){
+        $('.tableBodyRow').remove();
+        readTableJson();
+    });
+}(jQuery));
+ 
+function windowResize(){
+    $(window).on('resize load',function(){
+        var $headerHeight = $('header').height();
+        $('section .MainEmptyDiv').css('height',$headerHeight);
+    });
+}
+ 
+function readTableJson(){
+    $.ajax({
+        'type':'GET',
+        'url':'ArtistList.json',
+        'dataType':'json',
+        success:function(jsonFile){
+            var SongTable = '';
+            for(var i=0;i<jsonFile.length;i++){
+                SongTable += '<tr class="tableBodyRow"><td class="artist"><figure><img alt="' + jsonFile[i].name +'"src="'+jsonFile[i].image+'"><figcaption>'+jsonFile[i].name+ '</figcaption></figure></td>';
+                SongTable += '<td class="songName">'+jsonFile[i].song+'</td>';
+                SongTable += '<td class="buyVote"><span title="buy" class="buy"></span><span title="book" class="book"></span><span title="like" class="voteMusic"></span></td>';
+                SongTable += '</tr>';
+            }
+            $('table').append(SongTable);
+        }
+    });
+}
+
+        <section class="container" id="TableSection">
+            <h2>Recently Added Musics</h2><span class="refreshTable"></span>
+            <table id="RecentSongTable">
+                <tr class="tableHeadRow">
+                    <th>Artist</th>
+                    <th>Name of Song</th>
+                    <th>Buy/Like</th>
+                </tr>
+            </table>
+        </section>
